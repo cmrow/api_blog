@@ -77,7 +77,7 @@ export const fetchUsers = asyncHandler(async (req, res) => {
 });
 
 // @desc Get all users
-// @route POST /api/users/:id
+// @route DELETE /api/users/:id
 // @acces Private
 export const deleteUsers = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -91,20 +91,20 @@ export const deleteUsers = asyncHandler(async (req, res) => {
   }
 });
 
-// //----------------
-// //user details
-// //----------------
-// const fetchUserDetails = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
-//   //check if user id is valid
-//   validateMongodbId(id);
-//   try {
-//     const user = await User.findById(id);
-//     res.json(user);
-//   } catch (error) {
-//     res.json(error);
-//   }
-// });
+// @desc Get datails user
+// @route GET /api/users/:id
+// @acces Private
+export const fetchUserDetails = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  //check if user id is valid
+  validateMongodbId(id);
+  try {
+    const user = await User.findById(id);
+    res.json(user);
+  } catch (error) {
+    res.json(error);
+  }
+});
 
 // //------------------------------
 // //User profile

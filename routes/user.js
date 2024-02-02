@@ -1,5 +1,5 @@
 import express from 'express';
-import { userRegister, loginUser, fetchUsers, deleteUsers } from '../controllers/user.js';
+import { userRegister, loginUser, fetchUsers, deleteUsers,fetchUserDetails } from '../controllers/user.js';
 import isLoggedIn from '../middlewares/isLoggedIn.js';
 // const authMiddleware = require("../../middlewares/auth/authMiddleware");
 
@@ -38,6 +38,6 @@ userRoutes.get("/", isLoggedIn, fetchUsers);
 // userRoutes.get("/profile/:id", authMiddleware, userProfile);
 // userRoutes.put("/", authMiddleware, updateUser);
 userRoutes.delete("/:id", deleteUsers);
-// userRoutes.get("/:id", fetchUserDetails);
+userRoutes.get("/:id", fetchUserDetails);
 
 export default userRoutes;
