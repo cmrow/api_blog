@@ -1,5 +1,5 @@
 import express from 'express';
-import { userRegister, loginUser,fetchUsers } from '../controllers/user.js';
+import { userRegister, loginUser, fetchUsers, deleteUsers } from '../controllers/user.js';
 import isLoggedIn from '../middlewares/isLoggedIn.js';
 // const authMiddleware = require("../../middlewares/auth/authMiddleware");
 
@@ -37,7 +37,7 @@ userRoutes.get("/", isLoggedIn, fetchUsers);
 // userRoutes.put("/unblock-user/:id", authMiddleware, unBlockUser);
 // userRoutes.get("/profile/:id", authMiddleware, userProfile);
 // userRoutes.put("/", authMiddleware, updateUser);
-// userRoutes.delete("/:id", deleteUsers);
+userRoutes.delete("/:id", deleteUsers);
 // userRoutes.get("/:id", fetchUserDetails);
 
 export default userRoutes;

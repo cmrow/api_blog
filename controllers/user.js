@@ -6,6 +6,7 @@ import User from '../models/User.js';
 // const fs = require("fs");
 // const crypto = require("crypto");
 // const User = require("../models/User");
+import validateMongodbId from '../utils/validateMongodbID.js';
 // const validateMongodbId = require("../../utils/validateMongodbID");
 // const cloudinaryUploadImg = require("../../utils/cloudinary");
 // const blockUser = require("../../utils/blockUser");
@@ -62,9 +63,9 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// //------------------------------
-// //Users
-// //-------------------------------
+// @desc Get all users
+// @route POST /api/users
+// @acces Private
 export const fetchUsers = asyncHandler(async (req, res) => {
   try {
     const users = await User.find({})
@@ -75,20 +76,20 @@ export const fetchUsers = asyncHandler(async (req, res) => {
   }
 });
 
-// //------------------------------
-// //Delete user
-// //------------------------------
-// const deleteUsers = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
-//   //check if user id is valid
-//   validateMongodbId(id);
-//   try {
-//     const deletedUser = await User.findByIdAndDelete(id);
-//     res.json(deletedUser);
-//   } catch (error) {
-//     res.json(error);
-//   }
-// });
+// @desc Get all users
+// @route POST /api/users/:id
+// @acces Private
+export const deleteUsers = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  //check if user id is valid
+  validateMongodbId(id);
+  try {
+    const deletedUser = await User.findByIdAndDelete(id);
+    res.json(deletedUser);
+  } catch (error) {
+    res.json(error);
+  }
+});
 
 // //----------------
 // //user details
