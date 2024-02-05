@@ -1,5 +1,5 @@
 import express from 'express';
-import { userRegister, loginUser, fetchUsers, deleteUsers,fetchUserDetails } from '../controllers/user.js';
+import { userRegister, loginUser, fetchUsers, deleteUsers, fetchUserDetails, userProfile, updateUser, updateUserPassword, followingUser, unfollowUser, UpdateBlockUser, unBlockUser, generateVerificationToken } from '../controllers/user.js';
 import isLoggedIn from '../middlewares/isLoggedIn.js';
 // const authMiddleware = require("../../middlewares/auth/authMiddleware");
 
@@ -23,21 +23,22 @@ userRoutes.get("/", isLoggedIn, fetchUsers);
 // // Password reset
 // userRoutes.post("/forget-password-token", forgetPasswordToken);
 // userRoutes.put("/reset-password", passwordReset);
-// userRoutes.put("/password", authMiddleware, updateUserPassword);
-// userRoutes.put("/follow", authMiddleware, followingUser);
-// userRoutes.post(
-//   "/generate-verify-email-token",
-//   authMiddleware,
-//   generateVerificationToken
-// );
+userRoutes.put("/password", isLoggedIn, updateUserPassword);
+userRoutes.put("/follow", isLoggedIn, followingUser);
+userRoutes.post(
+    "/generate-verify-email-token",
+    isLoggedIn,
+    generateVerificationToken
+);
 
 // userRoutes.put("/verify-account", authMiddleware, accountVerification);
-// userRoutes.put("/unfollow", authMiddleware, unfollowUser);
-// userRoutes.put("/block-user/:id", authMiddleware, blockUser);
-// userRoutes.put("/unblock-user/:id", authMiddleware, unBlockUser);
-// userRoutes.get("/profile/:id", authMiddleware, userProfile);
-// userRoutes.put("/", authMiddleware, updateUser);
+userRoutes.put("/unfollow", isLoggedIn, unfollowUser);
+userRoutes.put("/block-user/:id", isLoggedIn, UpdateBlockUser);
+userRoutes.put("/unblock-user/:id", isLoggedIn, unBlockUser);
+userRoutes.get("/profile/:id", isLoggedIn, userProfile);
+userRoutes.put("/:id", isLoggedIn, updateUser);
 userRoutes.delete("/:id", deleteUsers);
 userRoutes.get("/:id", fetchUserDetails);
 
 export default userRoutes;
+
