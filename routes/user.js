@@ -26,9 +26,7 @@ userRoutes.get("/", isLoggedIn, fetchUsers);
 userRoutes.put("/password", isLoggedIn, updateUserPassword);
 userRoutes.put("/follow", isLoggedIn, followingUser);
 userRoutes.post(
-    "/generate-verify-email-token",
-    isLoggedIn,
-    generateVerificationToken
+    "/generate-verify-email-token", isLoggedIn, generateVerificationToken
 );
 
 // userRoutes.put("/verify-account", authMiddleware, accountVerification);
